@@ -12,11 +12,10 @@ namespace Demo_TheTravelingSalesperson
         private string _firstName;
         private string _lastName;
         private string _accountID;
-        private Product _currentStock;
         private List<string> _citiesVisited;
 
         #endregion
-
+        
         #region PROPERTIES
 
         public string FirstName
@@ -36,13 +35,7 @@ namespace Demo_TheTravelingSalesperson
             get { return _accountID; }
             set { _accountID = value; }
         }
-
-        public Product CurrentStock
-        {
-            get { return _currentStock; }
-            set { _currentStock = value; }
-        }
-
+      
         public List<string> CitiesVisited
         {
             get { return _citiesVisited; }
@@ -50,13 +43,12 @@ namespace Demo_TheTravelingSalesperson
         }
 
         #endregion
-
+        
         #region CONSTRUCTORS
 
         public Salesperson()
         {
             _citiesVisited = new List<string>();
-            _currentStock = new Product();
         }
 
         public Salesperson(string firstName, string lastName, string acountID)
@@ -66,11 +58,10 @@ namespace Demo_TheTravelingSalesperson
             _accountID = acountID;
 
             _citiesVisited = new List<string>();
-            _currentStock = new Product();
         }
 
         #endregion
-
+        
         #region METHODS
 
 

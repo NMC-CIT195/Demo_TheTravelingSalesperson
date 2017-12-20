@@ -29,7 +29,7 @@ namespace Demo_TheTravelingSalesperson
 
 
         #endregion
-
+        
         #region CONSTRUCTORS
 
         public Controller()
@@ -53,7 +53,7 @@ namespace Demo_TheTravelingSalesperson
         }
 
         #endregion
-
+        
         #region METHODS
 
         /// <summary>
@@ -99,15 +99,6 @@ namespace Demo_TheTravelingSalesperson
                     case MenuOption.Travel:
                         Travel();
                         break;
-                    case MenuOption.Buy:
-                        Buy();
-                        break;
-                    case MenuOption.Sell:
-                        Sell();
-                        break;
-                    case MenuOption.DisplayInventory:
-                        DisplayInventory();
-                        break;
                     case MenuOption.DisplayCities:
                         DisplayCities();
                         break;
@@ -144,37 +135,6 @@ namespace Demo_TheTravelingSalesperson
             {
                 _salesperson.CitiesVisited.Add(nextCity);
             }
-        }
-
-        /// <summary>
-        /// buy widgets
-        /// </summary>
-        private void Buy()
-        {
-            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToBuy(_salesperson.CurrentStock);
-            _salesperson.CurrentStock.AddWidgets(numberOfUnits);
-        }
-
-        /// <summary>
-        /// sell widgets
-        /// </summary>
-        private void Sell()
-        {
-            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToSell(_salesperson.CurrentStock);
-            _salesperson.CurrentStock.SubtractWidgets(numberOfUnits);
-
-            if (_salesperson.CurrentStock.OnBackorder)
-            {
-                _consoleView.DisplayBackorderNotification(_salesperson.CurrentStock, numberOfUnits);
-            }
-        }
-
-        /// <summary>
-        /// display inventory
-        /// </summary>
-        private void DisplayInventory()
-        {
-            _consoleView.DisplayInventory(_salesperson.CurrentStock);
         }
 
         /// <summary>
