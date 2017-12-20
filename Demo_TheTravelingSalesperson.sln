@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Solution", "Demo_TheTravelingSalesperson.S1_Solution\Demo_TheTravelingSalesperson.S1_Solution.csproj", "{12177A09-07F1-41BC-9F3A-32160EB21C7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Starter", "Demo_TheTravelingSalesperson.S1_Starter\Demo_TheTravelingSalesperson.S1_Starter.csproj", "{9D30E880-8C55-4511-AB46-F64FDD5545AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S3_Solution", "Demo_TheTravelingSalesperson.S3_Solution\Demo_TheTravelingSalesperson.S3_Solution.csproj", "{77745768-B8C0-469B-9801-D178197566DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{12177A09-07F1-41BC-9F3A-32160EB21C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12177A09-07F1-41BC-9F3A-32160EB21C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12177A09-07F1-41BC-9F3A-32160EB21C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D30E880-8C55-4511-AB46-F64FDD5545AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D30E880-8C55-4511-AB46-F64FDD5545AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D30E880-8C55-4511-AB46-F64FDD5545AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D30E880-8C55-4511-AB46-F64FDD5545AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77745768-B8C0-469B-9801-D178197566DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77745768-B8C0-469B-9801-D178197566DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77745768-B8C0-469B-9801-D178197566DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77745768-B8C0-469B-9801-D178197566DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
