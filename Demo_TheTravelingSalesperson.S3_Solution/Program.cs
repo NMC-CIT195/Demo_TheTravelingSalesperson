@@ -10,6 +10,12 @@ namespace Demo_TheTravelingSalesperson
     {
         static void Main(string[] args)
         {
+            //
+            // seed data file
+            //
+            InitializeDataFileCsv dataInitializer = new InitializeDataFileCsv();
+            dataInitializer.SeedDataFile();
+
             Controller appController = new Controller();
         }
     }

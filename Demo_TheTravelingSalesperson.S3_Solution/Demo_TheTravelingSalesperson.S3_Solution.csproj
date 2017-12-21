@@ -43,6 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Data\DataSettings.cs" />
+    <Compile Include="Data\InitializeDataFileCsv.cs" />
+    <Compile Include="Data\InitializeDataFileXml.cs" />
+    <Compile Include="DataAccessLayer\XmlServices.cs" />
     <Compile Include="Models\MenuOption.cs" />
     <Compile Include="Models\Salesperson.cs" />
     <Compile Include="Models\WidgetItemStock.cs" />
@@ -56,7 +60,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccessLayer\" />
+    <Content Include="Data\Data.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\Data.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

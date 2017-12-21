@@ -58,10 +58,11 @@
             _numberOfUnits = 0;
         }
 
-        public Product(WidgetType type, int numberOfUnits)
+        public Product(WidgetType type, int numberOfUnits, bool onBackorder)
         {
             _type = type;
             _numberOfUnits = numberOfUnits;
+            _onBackorder = onBackorder;
         }
 
         #endregion
