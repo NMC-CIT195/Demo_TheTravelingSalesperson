@@ -10,23 +10,42 @@ namespace Demo_TheTravelingSalesperson
 {
     public class InitializeDataFileXml
     {
+        public void SeedDataFile()
+        {
+            XmlServices xmlService = new XmlServices(DataSettings.dataFilePathXml);
 
+            xmlService.WriteSalespersonToDataFile(InitializeSalesperson());
+        }
 
-        /// <summary>
-        /// method to write all ski run info to the data file
-        /// </summary>
-        /// <param name="skiRuns">list of ski run info</param>
-        /// <param name="dataFilePath">path to the data file</param>
-        //public static void WriteAllSkiRuns(List<SkiRun> skiRuns, string dataFilePath)
+        private Salesperson InitializeSalesperson()
+        {
+            Salesperson salesperson = new Salesperson()
+            {
+                FirstName = "Bonzo",
+                LastName = "Regan",
+                AccountID = "banana103",
+                CurrentStock = new Product(Product.WidgetType.Furry, 20, false),
+                CitiesVisited = new List<string>()
+                {
+                    "Detroit",
+                    "Grand Rapids",
+                    "Ann Arbor"
+                }
+            };
+
+            return salesperson;
+        }
+
+        //public static void WriteSalespersonToFile(Salesperson salesperson)
         //{
-        //    XmlSerializer serializer = new XmlSerializer(typeof(List<SkiRun>), new XmlRootAttribute("SkiRuns"));
+        //    XmlSerializer serializer = new XmlSerializer(typeof(Salesperson), new XmlRootAttribute("Salesperson"));
 
-        //    StreamWriter sWriter = new StreamWriter(dataFilePath);
+        //    StreamWriter sWriter = new StreamWriter(DataSettings.dataFilePathXml);
 
         //    using (sWriter)
         //    {
-        //        serializer.Serialize(sWriter, skiRuns);
-        //    }            
+        //        serializer.Serialize(sWriter, salesperson);
+        //    }
         //}
     }
 }

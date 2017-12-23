@@ -10,12 +10,19 @@ namespace Demo_TheTravelingSalesperson
 {
     public class XmlServices
     {
-        public Salesperson ReadSalespersonData(string dataFilePath)
+        private string _dataFilePath;
+
+        public XmlServices(string dataFilePath)
+        {
+            _dataFilePath = dataFilePath;
+        }
+
+        public Salesperson ReadSalespersonFromDataFile()
         {
             Salesperson salesperson = new Salesperson();
 
             // initialize a FileStream object for reading
-            StreamReader sReader = new StreamReader(DataSettings.dataFilePathXml);
+            StreamReader sReader = new StreamReader(_dataFilePath);
 
             // initialize an XML seriailizer object
             XmlSerializer deserializer = new XmlSerializer(typeof(Salesperson));
@@ -28,6 +35,18 @@ namespace Demo_TheTravelingSalesperson
             }
 
             return salesperson;
+        }
+
+        public void WriteSalespersonToDataFile(Salesperson salesperson)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Salesperson), new XmlRootAttribute("Salesperson"));
+
+            StreamWriter sWriter = new StreamWriter(_dataFilePath);
+
+            using (sWriter)
+            {
+                serializer.Serialize(sWriter, salesperson);
+            }
         }
     }
 }

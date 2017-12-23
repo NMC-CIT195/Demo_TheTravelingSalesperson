@@ -4,36 +4,57 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Demo_TheTravelingSalesperson
 {
-    public class InitializeDataFileCsv
+    public class CsvServices
     {
-        public void SeedDataFile()
+        private string _dataFilePath;
+
+        public CsvServices(string dataFilePath)
         {
-            WriteSalespersonToFile(InitializeSalesperson());
+            _dataFilePath = dataFilePath;
         }
 
-        private Salesperson InitializeSalesperson()
+        public Salesperson ReadSalespersonFromDataFile()
         {
-            Salesperson salesperson = new Salesperson()
+            Salesperson salesperson = new Salesperson();
+            string salespersonInfo;
+            string[] salespersonInfoArray;
+            string citiesTraveled;
+            string[] citiesTraveledArray;
+
+            // initialize a FileStream object for writing
+            FileStream rfileStream = File.OpenRead(DataSettings.dataFilePathCsv);
+
+            // wrap the FieldStream object in a using statement to ensure of the dispose
+            using (rfileStream)
             {
-                FirstName = "Bonzo",
-                LastName = "Regan",
-                AccountID = "banana103",
-                CurrentStock = new Product(Product.WidgetType.Furry, 20, false),
-                CitiesVisited = new List<string>()
+                // wrap the FileStream object in a StreamWriter object to simplify writing strings
+                StreamReader sReader = new StreamReader(rfileStream);
+
+                using (sReader)
                 {
-                    "Detroit",
-                    "Grand Rapids",
-                    "Ann Arbor"
+                    salespersonInfo = sReader.ReadLine();
+                    citiesTraveled = sReader.ReadLine();
                 }
-            };
+            }
+
+            salespersonInfoArray = salespersonInfo.Split(',');
+            salesperson.FirstName = salespersonInfoArray[0];
+            salesperson.LastName = salespersonInfoArray[1];
+            salesperson.AccountID = salespersonInfoArray[2];
+            //salesperson.CurrentStock.Type = salespersonInfoArray[3];
+            salesperson.CurrentStock.AddWidgets(Convert.ToInt32(salespersonInfoArray[4]));
+            salesperson.CurrentStock.OnBackorder = Convert.ToBoolean(salespersonInfoArray[5]);
+
+            salesperson.CitiesVisited = citiesTraveled.Split(',').ToList();
 
             return salesperson;
         }
 
-        public static void WriteSalespersonToFile(Salesperson salesperson)
+        public void WriteSalespersonToDataFile(Salesperson salesperson)
         {
             string salespersonData;
             char delineator = ',';
@@ -87,30 +108,6 @@ namespace Demo_TheTravelingSalesperson
                     sWriter.Write(salespersonData);
                 }
             }
-        }
-
-
-        public static Salesperson ReadSalespersonFromfile()
-        {
-            Salesperson salesperson = new Salesperson();
-
-            // initialize a FileStream object for writing
-            FileStream rfileStream = File.OpenRead(DataSettings.dataFilePathCsv);
-
-            // wrap the FieldStream object in a using statement to ensure of the dispose
-            using (rfileStream)
-            {
-                // wrap the FileStream object in a StreamWriter object to simplify writing strings
-                StreamReader sReader = new StreamReader(rfileStream);
-
-                using (sReader)
-                {
-                    string salespersonInfo = sReader.ReadLine();
-                    string citiesTraveled = sReader.ReadLine();
-                }
-            }
-
-            return salesperson;
         }
     }
 }
