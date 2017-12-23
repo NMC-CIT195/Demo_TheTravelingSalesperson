@@ -139,12 +139,12 @@ namespace Demo_TheTravelingSalesperson
             //
             // list all widget types
             //
-            foreach (string widgeType in Enum.GetNames(typeof(Product.WidgetType)))
+            foreach (string widgeType in Enum.GetNames(typeof(Product.ProductType)))
             {
                 //
                 // do not display the "None" enum value
                 //
-                if (widgeType != Product.WidgetType.None.ToString())
+                if (widgeType != Product.ProductType.None.ToString())
                 {
                     ConsoleUtil.DisplayMessage(widgeType);
                 }
@@ -156,14 +156,14 @@ namespace Demo_TheTravelingSalesperson
             //
             ConsoleUtil.DisplayMessage("");
             ConsoleUtil.DisplayPromptMessage("Enter the widget type: ");
-            Product.WidgetType widgetType;
-            if (Enum.TryParse<Product.WidgetType>(Console.ReadLine(), out widgetType))
+            Product.ProductType widgetType;
+            if (Enum.TryParse<Product.ProductType>(Console.ReadLine(), out widgetType))
             {
                 salesperson.CurrentStock.Type = widgetType;
             }
             else
             {
-                salesperson.CurrentStock.Type = Product.WidgetType.None;
+                salesperson.CurrentStock.Type = Product.ProductType.None;
             }
 
             //
@@ -171,13 +171,13 @@ namespace Demo_TheTravelingSalesperson
             //
             if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "widgets", out int numberOfUnits))
             {
-                salesperson.CurrentStock.AddWidgets(numberOfUnits);
+                salesperson.CurrentStock.AddProducts(numberOfUnits);
             }
             else
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of widgets in your stock.");
                 ConsoleUtil.DisplayMessage("By default, the number of widgets in your inventory are now set to zero.");
-                salesperson.CurrentStock.AddWidgets(0);
+                salesperson.CurrentStock.AddProducts(0);
                 DisplayContinuePrompt();
             }
 

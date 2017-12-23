@@ -11,7 +11,9 @@ namespace Demo_TheTravelingSalesperson
     {
         public void SeedDataFile()
         {
-            WriteSalespersonToFile(InitializeSalesperson());
+            CsvServices csvService = new CsvServices(DataSettings.dataFilePathCsv);
+
+            csvService.WriteSalespersonToDataFile(InitializeSalesperson());
         }
 
         private Salesperson InitializeSalesperson()
@@ -21,7 +23,7 @@ namespace Demo_TheTravelingSalesperson
                 FirstName = "Bonzo",
                 LastName = "Regan",
                 AccountID = "banana103",
-                CurrentStock = new Product(Product.WidgetType.Furry, 20, false),
+                CurrentStock = new Product(Product.ProductType.Furry, 20, false),
                 CitiesVisited = new List<string>()
                 {
                     "Detroit",
@@ -33,84 +35,84 @@ namespace Demo_TheTravelingSalesperson
             return salesperson;
         }
 
-        public static void WriteSalespersonToFile(Salesperson salesperson)
-        {
-            string salespersonData;
-            char delineator = ',';
+        //public static void WriteSalespersonToFile(Salesperson salesperson)
+        //{
+        //    string salespersonData;
+        //    char delineator = ',';
 
-            StringBuilder sb = new StringBuilder();
+        //    StringBuilder sb = new StringBuilder();
 
-            //
-            // add salesperson and product info to string
-            //
-            sb.Clear();
-            sb.Append(salesperson.FirstName + delineator);
-            sb.Append(salesperson.LastName + delineator);
-            sb.Append(salesperson.AccountID + delineator);
-            sb.Append(salesperson.CurrentStock.Type.ToString() + delineator);
-            sb.Append(salesperson.CurrentStock.NumberOfUnits.ToString() + delineator);
-            sb.Append(salesperson.CurrentStock.OnBackorder.ToString());
-            sb.Append(Environment.NewLine);
+        //    //
+        //    // add salesperson and product info to string
+        //    //
+        //    sb.Clear();
+        //    sb.Append(salesperson.FirstName + delineator);
+        //    sb.Append(salesperson.LastName + delineator);
+        //    sb.Append(salesperson.AccountID + delineator);
+        //    sb.Append(salesperson.CurrentStock.Type.ToString() + delineator);
+        //    sb.Append(salesperson.CurrentStock.NumberOfUnits.ToString() + delineator);
+        //    sb.Append(salesperson.CurrentStock.OnBackorder.ToString());
+        //    sb.Append(Environment.NewLine);
 
-            //
-            // add cities traveled to the string
-            //
-            foreach (string city in salesperson.CitiesVisited)
-            {
-                sb.Append(city + delineator);
-            }
+        //    //
+        //    // add cities traveled to the string
+        //    //
+        //    foreach (string city in salesperson.CitiesVisited)
+        //    {
+        //        sb.Append(city + delineator);
+        //    }
 
-            //
-            // remove the last delineator
-            //
-            if (sb.Length != 0)
-            {
-                sb.Length--;
-            }
+        //    //
+        //    // remove the last delineator
+        //    //
+        //    if (sb.Length != 0)
+        //    {
+        //        sb.Length--;
+        //    }
 
-            //
-            // convert StringBuilder object to a string
-            //
-            salespersonData = sb.ToString();
+        //    //
+        //    // convert StringBuilder object to a string
+        //    //
+        //    salespersonData = sb.ToString();
 
-            // initialize a FileStream object for writing
-            FileStream wfileStream = File.OpenWrite(DataSettings.dataFilePathCsv);
+        //    // initialize a FileStream object for writing
+        //    FileStream wfileStream = File.OpenWrite(DataSettings.dataFilePathCsv);
 
-            // wrap the FieldStream object in a using statement to ensure of the dispose
-            using (wfileStream)
-            {
-                // wrap the FileStream object in a StreamWriter object to simplify writing strings
-                StreamWriter sWriter = new StreamWriter(wfileStream);
+        //    // wrap the FieldStream object in a using statement to ensure of the dispose
+        //    using (wfileStream)
+        //    {
+        //        // wrap the FileStream object in a StreamWriter object to simplify writing strings
+        //        StreamWriter sWriter = new StreamWriter(wfileStream);
 
-                using (sWriter)
-                {
-                    sWriter.Write(salespersonData);
-                }
-            }
-        }
+        //        using (sWriter)
+        //        {
+        //            sWriter.Write(salespersonData);
+        //        }
+        //    }
+        //}
 
 
-        public static Salesperson ReadSalespersonFromfile()
-        {
-            Salesperson salesperson = new Salesperson();
+        //public static Salesperson ReadSalespersonFromfile()
+        //{
+        //    Salesperson salesperson = new Salesperson();
 
-            // initialize a FileStream object for writing
-            FileStream rfileStream = File.OpenRead(DataSettings.dataFilePathCsv);
+        //    // initialize a FileStream object for writing
+        //    FileStream rfileStream = File.OpenRead(DataSettings.dataFilePathCsv);
 
-            // wrap the FieldStream object in a using statement to ensure of the dispose
-            using (rfileStream)
-            {
-                // wrap the FileStream object in a StreamWriter object to simplify writing strings
-                StreamReader sReader = new StreamReader(rfileStream);
+        //    // wrap the FieldStream object in a using statement to ensure of the dispose
+        //    using (rfileStream)
+        //    {
+        //        // wrap the FileStream object in a StreamWriter object to simplify writing strings
+        //        StreamReader sReader = new StreamReader(rfileStream);
 
-                using (sReader)
-                {
-                    string salespersonInfo = sReader.ReadLine();
-                    string citiesTraveled = sReader.ReadLine();
-                }
-            }
+        //        using (sReader)
+        //        {
+        //            string salespersonInfo = sReader.ReadLine();
+        //            string citiesTraveled = sReader.ReadLine();
+        //        }
+        //    }
 
-            return salesperson;
-        }
+        //    return salesperson;
+        //}
     }
 }

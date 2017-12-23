@@ -24,7 +24,7 @@ namespace Demo_TheTravelingSalesperson
                 FirstName = "Bonzo",
                 LastName = "Regan",
                 AccountID = "banana103",
-                CurrentStock = new Product(Product.WidgetType.Furry, 20, false),
+                CurrentStock = new Product(Product.ProductType.Furry, 20, false),
                 CitiesVisited = new List<string>()
                 {
                     "Detroit",

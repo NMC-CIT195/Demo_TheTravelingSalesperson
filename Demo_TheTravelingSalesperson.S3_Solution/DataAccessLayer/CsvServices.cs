@@ -23,7 +23,6 @@ namespace Demo_TheTravelingSalesperson
             string salespersonInfo;
             string[] salespersonInfoArray;
             string citiesTraveled;
-            string[] citiesTraveledArray;
 
             // initialize a FileStream object for writing
             FileStream rfileStream = File.OpenRead(DataSettings.dataFilePathCsv);
@@ -41,12 +40,21 @@ namespace Demo_TheTravelingSalesperson
                 }
             }
 
+            //
+            // convert and write data to salesperson object
+            //
             salespersonInfoArray = salespersonInfo.Split(',');
             salesperson.FirstName = salespersonInfoArray[0];
             salesperson.LastName = salespersonInfoArray[1];
             salesperson.AccountID = salespersonInfoArray[2];
-            //salesperson.CurrentStock.Type = salespersonInfoArray[3];
-            salesperson.CurrentStock.AddWidgets(Convert.ToInt32(salespersonInfoArray[4]));
+
+            if (!Enum.TryParse<Product.ProductType>(salespersonInfoArray[3], out Product.ProductType productType))
+            {
+                productType = Product.ProductType.None;
+            }
+            salesperson.CurrentStock.Type = productType;
+
+            salesperson.CurrentStock.AddProducts(Convert.ToInt32(salespersonInfoArray[4]));
             salesperson.CurrentStock.OnBackorder = Convert.ToBoolean(salespersonInfoArray[5]);
 
             salesperson.CitiesVisited = citiesTraveled.Split(',').ToList();
