@@ -162,7 +162,7 @@ namespace Demo_TheTravelingSalesperson
                 attempts++;
             }
 
-            return userResponse;
+            return userResponse.ToUpper();
         }
     }
 }

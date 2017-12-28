@@ -114,6 +114,12 @@ namespace Demo_TheTravelingSalesperson
                     case MenuOption.DisplayAccountInfo:
                         DisplayAccountInfo();
                         break;
+                    case MenuOption.SaveAccountInfo:
+                        DisplaySaveAccountInfo();
+                        break;
+                    case MenuOption.LoadAccountInfo:
+                        DisplayLoadAccountInfo();
+                        break;
                     case MenuOption.Exit:
                         _usingApplication = false;
                         break;
@@ -191,6 +197,44 @@ namespace Demo_TheTravelingSalesperson
         private void DisplayAccountInfo()
         {
             _consoleView.DisplayAccountInfo(_salesperson);
+        }
+
+        /// <summary>
+        /// display save account information
+        /// </summary>
+        private void DisplaySaveAccountInfo()
+        {
+            bool maxAttemptsExceeded = false;
+            bool saveAccountInfo = false;
+
+            saveAccountInfo = _consoleView.DisplaySaveAccountInfo(_salesperson, out maxAttemptsExceeded);
+
+            if (saveAccountInfo && !maxAttemptsExceeded)
+            {
+                CsvServices csvServices = new CsvServices(DataSettings.dataFilePathCsv);
+                csvServices.WriteSalespersonToDataFile(_salesperson);
+
+                _consoleView.DisplayConfirmSaveAccountInfo();
+            }
+        }
+
+        /// <summary>
+        /// display load account information
+        /// </summary>
+        private void DisplayLoadAccountInfo()
+        {
+            bool maxAttemptsExceeded = false;
+            bool loadAccountInfo = false;
+
+            loadAccountInfo = _consoleView.DisplayLoadAccountInfo(_salesperson, out maxAttemptsExceeded);
+
+            if (loadAccountInfo && !maxAttemptsExceeded)
+            {
+                CsvServices csvServices = new CsvServices(DataSettings.dataFilePathCsv);
+                _salesperson = csvServices.ReadSalespersonFromDataFile();
+
+                _consoleView.DisplayConfirmLoadAccountInfo(_salesperson);
+            }
         }
 
         #endregion

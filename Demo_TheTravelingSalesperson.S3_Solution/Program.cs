@@ -15,16 +15,16 @@ namespace Demo_TheTravelingSalesperson
             //
             InitializeDataFileCsv dataInitializerCsv = new InitializeDataFileCsv();
             dataInitializerCsv.SeedDataFile();
-            InitializeDataFileXml dataInitializerXml = new InitializeDataFileXml();
-            dataInitializerXml.SeedDataFile();
+            //InitializeDataFileXml dataInitializerXml = new InitializeDataFileXml();
+            //dataInitializerXml.SeedDataFile();
 
             //
             // debug IO
             //
-            XmlServices IoServicesXml = new XmlServices(DataSettings.dataFilePathXml);
-            Salesperson salespersonXml = IoServicesXml.ReadSalespersonFromDataFile();
-            CsvServices IoServicesCsv = new CsvServices(DataSettings.dataFilePathCsv);
-            Salesperson salepersonCsv = IoServicesCsv.ReadSalespersonFromDataFile();
+            //XmlServices IoServicesXml = new XmlServices(DataSettings.dataFilePathXml);
+            //Salesperson salespersonXml = IoServicesXml.ReadSalespersonFromDataFile();
+            //CsvServices IoServicesCsv = new CsvServices(DataSettings.dataFilePathCsv);
+            //Salesperson salepersonCsv = IoServicesCsv.ReadSalespersonFromDataFile();
 
             Controller appController = new Controller();
         }

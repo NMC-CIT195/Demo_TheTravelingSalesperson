@@ -13,6 +13,8 @@ namespace Demo_TheTravelingSalesperson
     {
         #region FIELDS
 
+        private const int MAX_ATTEMPTS = 3;
+
         #endregion
 
         #region PROPERTIES
@@ -192,6 +194,84 @@ namespace Demo_TheTravelingSalesperson
             return salesperson;
         }
 
+        public bool DisplaySaveAccountInfo(Salesperson salesperson, out bool maxAttemptsExceeded)
+        {
+            string userResponse;
+            maxAttemptsExceeded = false;
+
+            ConsoleUtil.HeaderText = "Save Account";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("The current account information.");
+            DisplayAccountDetail(salesperson);
+
+            ConsoleUtil.DisplayMessage("");
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Save the account information?", out maxAttemptsExceeded);
+
+            if (maxAttemptsExceeded)
+            {
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty. You will return to the main menu.");
+                return false;
+            }
+            else
+            {
+                //
+                // note use of ternary operator
+                //
+                return userResponse == "YES" ? true : false;
+            }
+        }
+
+        public void DisplayConfirmSaveAccountInfo()
+        {
+            ConsoleUtil.HeaderText = "Save Account";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("Account information saved.");
+
+            DisplayContinuePrompt();
+        }
+
+        public bool DisplayLoadAccountInfo(Salesperson salesperson, out bool maxAttemptsExceeded)
+        {
+            string userResponse;
+            maxAttemptsExceeded = false;
+
+            ConsoleUtil.HeaderText = "Load Account";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("The current account information.");
+            DisplayAccountDetail(salesperson);
+
+            ConsoleUtil.DisplayMessage("");
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
+
+            if (maxAttemptsExceeded)
+            {
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty. You will return to the main menu.");
+                return false;
+            }
+            else
+            {
+                //
+                // note use of ternary operator
+                //
+                return userResponse == "YES" ? true : false;
+            }
+        }
+
+        public void DisplayConfirmLoadAccountInfo(Salesperson salesperson)
+        {
+            ConsoleUtil.HeaderText = "Load Account";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("Account information loaded.");
+
+            DisplayAccountDetail(salesperson);
+
+            DisplayContinuePrompt();
+        }
+
         /// <summary>
         /// display a closing screen when the user quits the application
         /// </summary>
@@ -232,6 +312,8 @@ namespace Demo_TheTravelingSalesperson
                     "\t" + "4. Display Inventory" + Environment.NewLine +
                     "\t" + "5. Display Cities" + Environment.NewLine +
                     "\t" + "6. Display Account Info" + Environment.NewLine +
+                    "\t" + "7. Save Account Info" + Environment.NewLine +
+                    "\t" + "8. Load Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -263,6 +345,14 @@ namespace Demo_TheTravelingSalesperson
                         break;
                     case '6':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '7':
+                        userMenuChoice = MenuOption.SaveAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '8':
+                        userMenuChoice = MenuOption.LoadAccountInfo;
                         usingMenu = false;
                         break;
                     case 'E':
@@ -422,11 +512,23 @@ namespace Demo_TheTravelingSalesperson
         /// <summary>
         /// display the current account information
         /// </summary>
+        ///         /// <param name="salesperson">Salesperson object</param>
         public void DisplayAccountInfo(Salesperson salesperson)
         {
             ConsoleUtil.HeaderText = "Account Info";
             ConsoleUtil.DisplayReset();
 
+            DisplayAccountDetail(salesperson);
+
+            DisplayContinuePrompt();
+        }
+
+        /// <summary>
+        /// display just the account detail
+        /// </summary>
+        /// <param name="salesperson">Salesperson object</param>
+        private void DisplayAccountDetail(Salesperson salesperson)
+        {
             ConsoleUtil.DisplayMessage("First Name: " + salesperson.FirstName);
             ConsoleUtil.DisplayMessage("Last Name: " + salesperson.LastName);
             ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
@@ -439,8 +541,6 @@ namespace Demo_TheTravelingSalesperson
             {
                 ConsoleUtil.DisplayMessage("Units of Widgets on Backorder: " + Math.Abs(salesperson.CurrentStock.NumberOfUnits));
             }
-
-            DisplayContinuePrompt();
         }
 
         #endregion
