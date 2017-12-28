@@ -7,7 +7,7 @@
     {
         #region ENUMERABLES
 
-        public enum WidgetType
+        public enum ProductType
         {
             None,
             Furry,
@@ -19,7 +19,7 @@
 
         #region FIELDS
 
-        private WidgetType _type;
+        private ProductType _type;
         private int _numberOfUnits;
         private bool _onBackorder;
 
@@ -27,7 +27,7 @@
 
         #region PROPERTIES
 
-        public WidgetType Type
+        public ProductType Type
         {
             get { return _type; }
             set { _type = value; }
@@ -54,11 +54,11 @@
 
         public Product()
         {
-            _type = WidgetType.None;
+            _type = ProductType.None;
             _numberOfUnits = 0;
         }
 
-        public Product(WidgetType type, int numberOfUnits)
+        public Product(ProductType type, int numberOfUnits)
         {
             _type = type;
             _numberOfUnits = numberOfUnits;
@@ -69,20 +69,20 @@
         #region METHODS
 
         /// <summary>
-        /// add widgets to the inventory
+        /// add products to the inventory
         /// </summary>
         /// <param name="unitsToAdd">number of units to add</param>
-        public void AddWidgets(int unitsToAdd)
+        public void AddProducts(int unitsToAdd)
         {
             _numberOfUnits += unitsToAdd;
         }
 
         /// <summary>
-        /// subtract widgets from the inventory
+        /// subtract products from the inventory
         /// note: when number of units sold exceeds inventory, backorder status set
         /// </summary>
         /// <param name="unitsToSubtract">number of units to subtract</param>
-        public void SubtractWidgets(int unitsToSubtract)
+        public void SubtractProducts(int unitsToSubtract)
         {
             if (_numberOfUnits < unitsToSubtract)
             {

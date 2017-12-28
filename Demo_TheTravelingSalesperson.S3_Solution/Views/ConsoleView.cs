@@ -194,11 +194,17 @@ namespace Demo_TheTravelingSalesperson
             return salesperson;
         }
 
+        /// <summary>
+        /// queries user to save account information to file
+        /// </summary>
+        /// <param name="salesperson">Salesperson object</param>
+        /// <param name="maxAttemptsExceeded">maximum attempts exceeded flag</param>
+        /// <returns></returns>
         public bool DisplaySaveAccountInfo(Salesperson salesperson, out bool maxAttemptsExceeded)
         {
             string userResponse;
             maxAttemptsExceeded = false;
-
+           
             ConsoleUtil.HeaderText = "Save Account";
             ConsoleUtil.DisplayReset();
 
@@ -222,6 +228,9 @@ namespace Demo_TheTravelingSalesperson
             }
         }
 
+        /// <summary>
+        /// displays a confirmation of account as saved
+        /// </summary>
         public void DisplayConfirmSaveAccountInfo()
         {
             ConsoleUtil.HeaderText = "Save Account";
@@ -232,6 +241,12 @@ namespace Demo_TheTravelingSalesperson
             DisplayContinuePrompt();
         }
 
+        /// <summary>
+        /// queries user to load account information, existing account info displayed
+        /// </summary>
+        /// <param name="salesperson">Salesperson object</param>
+        /// <param name="maxAttemptsExceeded">maximum attempts exceeded flag</param>
+        /// <returns>user choice</returns>
         public bool DisplayLoadAccountInfo(Salesperson salesperson, out bool maxAttemptsExceeded)
         {
             string userResponse;
@@ -260,6 +275,41 @@ namespace Demo_TheTravelingSalesperson
             }
         }
 
+        /// <summary>
+        /// queries user to load account information
+        /// </summary>
+        /// <param name="salesperson">Salesperson object</param>
+        /// <param name="maxAttemptsExceeded">maximum attempts exceeded flag</param>
+        /// <returns>user choice</returns>
+        public bool DisplayLoadAccountInfo(out bool maxAttemptsExceeded)
+        {
+            string userResponse;
+            maxAttemptsExceeded = false;
+
+            ConsoleUtil.HeaderText = "Load Account";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("");
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
+
+            if (maxAttemptsExceeded)
+            {
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty. You will return to the main menu.");
+                return false;
+            }
+            else
+            {
+                //
+                // note use of ternary operator
+                //
+                return userResponse == "YES" ? true : false;
+            }
+        }
+
+        /// <summary>
+        /// displays a confirmation of account and info loaded
+        /// </summary>
+        /// <param name="salesperson">Salesperson object</param>
         public void DisplayConfirmLoadAccountInfo(Salesperson salesperson)
         {
             ConsoleUtil.HeaderText = "Load Account";
@@ -306,14 +356,15 @@ namespace Demo_TheTravelingSalesperson
                 ConsoleUtil.DisplayMessage("Please type the number of your menu choice.");
                 ConsoleUtil.DisplayMessage("");
                 Console.Write(
-                    "\t" + "1. Travel" + Environment.NewLine +
-                    "\t" + "2. Buy" + Environment.NewLine +
-                    "\t" + "3. Sell" + Environment.NewLine +
-                    "\t" + "4. Display Inventory" + Environment.NewLine +
-                    "\t" + "5. Display Cities" + Environment.NewLine +
-                    "\t" + "6. Display Account Info" + Environment.NewLine +
-                    "\t" + "7. Save Account Info" + Environment.NewLine +
-                    "\t" + "8. Load Account Info" + Environment.NewLine +
+                    "\t" + "1. Setup Account" + Environment.NewLine +
+                    "\t" + "2. Travel" + Environment.NewLine +
+                    "\t" + "3. Buy" + Environment.NewLine +
+                    "\t" + "4. Sell" + Environment.NewLine +
+                    "\t" + "5. Display Inventory" + Environment.NewLine +
+                    "\t" + "6. Display Cities" + Environment.NewLine +
+                    "\t" + "7. Display Account Info" + Environment.NewLine +
+                    "\t" + "8. Save Account Info" + Environment.NewLine +
+                    "\t" + "9. Load Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -324,34 +375,38 @@ namespace Demo_TheTravelingSalesperson
                 switch (userResponse.KeyChar)
                 {
                     case '1':
-                        userMenuChoice = MenuOption.Travel;
+                        userMenuChoice = MenuOption.SetupAccount;
                         usingMenu = false;
                         break;
                     case '2':
-                        userMenuChoice = MenuOption.Buy;
+                        userMenuChoice = MenuOption.Travel;
                         usingMenu = false;
                         break;
                     case '3':
-                        userMenuChoice = MenuOption.Sell;
+                        userMenuChoice = MenuOption.Buy;
                         usingMenu = false;
                         break;
                     case '4':
-                        userMenuChoice = MenuOption.DisplayInventory;
+                        userMenuChoice = MenuOption.Sell;
                         usingMenu = false;
                         break;
                     case '5':
-                        userMenuChoice = MenuOption.DisplayCities;
+                        userMenuChoice = MenuOption.DisplayInventory;
                         usingMenu = false;
                         break;
                     case '6':
-                        userMenuChoice = MenuOption.DisplayAccountInfo;
+                        userMenuChoice = MenuOption.DisplayCities;
                         usingMenu = false;
                         break;
                     case '7':
-                        userMenuChoice = MenuOption.SaveAccountInfo;
+                        userMenuChoice = MenuOption.DisplayAccountInfo;
                         usingMenu = false;
                         break;
                     case '8':
+                        userMenuChoice = MenuOption.SaveAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case '9':
                         userMenuChoice = MenuOption.LoadAccountInfo;
                         usingMenu = false;
                         break;

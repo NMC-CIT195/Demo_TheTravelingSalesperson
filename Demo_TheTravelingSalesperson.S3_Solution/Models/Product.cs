@@ -9,10 +9,10 @@
 
         public enum ProductType
         {
-            None,
-            Furry,
-            Spotted,
-            Dancing
+            NONE,
+            FURRY,
+            SPOTTED,
+            DANCING
         }
 
         #endregion
@@ -54,7 +54,7 @@
 
         public Product()
         {
-            _type = ProductType.None;
+            _type = ProductType.NONE;
             _numberOfUnits = 0;
         }
 

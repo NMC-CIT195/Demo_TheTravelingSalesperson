@@ -6,6 +6,7 @@
     public enum MenuOption
     {
         None,
+        SetupAccount,
         Travel,
         Buy,
         Sell,

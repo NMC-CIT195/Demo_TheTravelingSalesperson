@@ -13,8 +13,8 @@ namespace Demo_TheTravelingSalesperson
             //
             // seed data file
             //
-            InitializeDataFileCsv dataInitializerCsv = new InitializeDataFileCsv();
-            dataInitializerCsv.SeedDataFile();
+            //InitializeDataFileCsv dataInitializerCsv = new InitializeDataFileCsv();
+            //dataInitializerCsv.SeedDataFile();
             //InitializeDataFileXml dataInitializerXml = new InitializeDataFileXml();
             //dataInitializerXml.SeedDataFile();
 

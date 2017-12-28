@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Controller.cs" />
-    <Compile Include="Models\WidgetItemStock.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\MenuOption.cs" />
     <Compile Include="Models\Salesperson.cs" />
     <Compile Include="Program.cs" />

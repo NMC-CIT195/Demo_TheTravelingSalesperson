@@ -74,11 +74,6 @@ namespace Demo_TheTravelingSalesperson
             _consoleView.DisplayWelcomeScreen();
 
             //
-            // setup initial salesperson account
-            //
-            _salesperson = _consoleView.DisplaySetupAccount();
-
-            //
             // application loop
             //
             while (_usingApplication)
@@ -95,6 +90,9 @@ namespace Demo_TheTravelingSalesperson
                 switch (userMenuChoice)
                 {
                     case MenuOption.None:
+                        break;
+                    case MenuOption.SetupAccount:
+                        SetupAccount();
                         break;
                     case MenuOption.Travel:
                         Travel();
@@ -134,6 +132,11 @@ namespace Demo_TheTravelingSalesperson
             // close the application
             //
             Environment.Exit(1);
+        }
+
+        private void SetupAccount()
+        {
+            _salesperson = _consoleView.DisplaySetupAccount();
         }
 
         /// <summary>
@@ -226,7 +229,17 @@ namespace Demo_TheTravelingSalesperson
             bool maxAttemptsExceeded = false;
             bool loadAccountInfo = false;
 
-            loadAccountInfo = _consoleView.DisplayLoadAccountInfo(_salesperson, out maxAttemptsExceeded);
+            //
+            // note: rather than pass null value, method is overloaded
+            //
+            if (_salesperson.AccountID != "")
+            {
+                loadAccountInfo = _consoleView.DisplayLoadAccountInfo(_salesperson, out maxAttemptsExceeded);
+            }
+            else
+            {
+                loadAccountInfo = _consoleView.DisplayLoadAccountInfo(out maxAttemptsExceeded);
+            }
 
             if (loadAccountInfo && !maxAttemptsExceeded)
             {

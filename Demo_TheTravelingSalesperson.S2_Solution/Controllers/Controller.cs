@@ -147,21 +147,21 @@ namespace Demo_TheTravelingSalesperson
         }
 
         /// <summary>
-        /// buy widgets
+        /// buy products
         /// </summary>
         private void Buy()
         {
             int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToBuy(_salesperson.CurrentStock);
-            _salesperson.CurrentStock.AddWidgets(numberOfUnits);
+            _salesperson.CurrentStock.AddProducts(numberOfUnits);
         }
 
         /// <summary>
-        /// sell widgets
+        /// sell products
         /// </summary>
         private void Sell()
         {
             int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToSell(_salesperson.CurrentStock);
-            _salesperson.CurrentStock.SubtractWidgets(numberOfUnits);
+            _salesperson.CurrentStock.SubtractProducts(numberOfUnits);
 
             if (_salesperson.CurrentStock.OnBackorder)
             {
