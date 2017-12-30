@@ -9,10 +9,10 @@
 
         public enum ProductType
         {
-            NONE,
-            FURRY,
-            SPOTTED,
-            DANCING
+            None,
+            Furry,
+            Spotted,
+            Dancing
         }
 
         #endregion
@@ -54,7 +54,7 @@
 
         public Product()
         {
-            _type = ProductType.NONE;
+            _type = ProductType.None;
             _numberOfUnits = 0;
         }
 
@@ -70,7 +70,7 @@
         #region METHODS
 
         /// <summary>
-        /// add widgets to the inventory
+        /// add products to the inventory
         /// </summary>
         /// <param name="unitsToAdd">number of units to add</param>
         public void AddProducts(int unitsToAdd)
@@ -79,7 +79,7 @@
         }
 
         /// <summary>
-        /// subtract widgets from the inventory
+        /// subtract products from the inventory
         /// note: when number of units sold exceeds inventory, backorder status set
         /// </summary>
         /// <param name="unitsToSubtract">number of units to subtract</param>

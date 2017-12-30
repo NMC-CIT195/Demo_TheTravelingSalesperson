@@ -156,7 +156,7 @@ namespace Demo_TheTravelingSalesperson
         }
 
         /// <summary>
-        /// buy widgets
+        /// buy products
         /// </summary>
         private void Buy()
         {
@@ -165,7 +165,7 @@ namespace Demo_TheTravelingSalesperson
         }
 
         /// <summary>
-        /// sell widgets
+        /// sell products
         /// </summary>
         private void Sell()
         {

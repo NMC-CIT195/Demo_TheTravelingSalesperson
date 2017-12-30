@@ -13,7 +13,9 @@ namespace Demo_TheTravelingSalesperson
     {
         #region FIELDS
 
-        private const int MAX_ATTEMPTS = 3;
+        private const int MAXIMUM_ATTEMPTS = 3;
+        private const int MINIMUM_BUYSELL_AMOUNT = 0;
+        private const int MAXIMUM_BUYSELL_AMOUNT = 100;
 
         #endregion
 
@@ -93,10 +95,10 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("");
 
             sb.Clear();
-            sb.AppendFormat("You are a traveling salesperson buying and selling widgets ");
+            sb.AppendFormat("You are a traveling salesperson buying and selling products ");
             sb.AppendFormat("around the country. You will be prompted regarding which city ");
             sb.AppendFormat("you wish to travel to and will then be asked whether you wish to buy ");
-            sb.AppendFormat("or sell widgets.");
+            sb.AppendFormat("or sell products.");
             ConsoleUtil.DisplayMessage(sb.ToString());
             ConsoleUtil.DisplayMessage("");
 
@@ -135,33 +137,33 @@ namespace Demo_TheTravelingSalesperson
             salesperson.AccountID = Console.ReadLine();
             ConsoleUtil.DisplayMessage("");
 
-            ConsoleUtil.DisplayMessage("Widget Types");
+            ConsoleUtil.DisplayMessage("Product Types");
             ConsoleUtil.DisplayMessage("");
 
             //
-            // list all widget types
+            // list all product types
             //
-            foreach (string widgeType in Enum.GetNames(typeof(Product.ProductType)))
+            foreach (string productTypeName in Enum.GetNames(typeof(Product.ProductType)))
             {
                 //
                 // do not display the "None" enum value
                 //
-                if (widgeType != Product.ProductType.None.ToString())
+                if (productTypeName != Product.ProductType.None.ToString())
                 {
-                    ConsoleUtil.DisplayMessage(widgeType);
+                    ConsoleUtil.DisplayMessage(productTypeName);
                 }
 
             }
 
             //
-            // get widget type, if invalid entry, set type to "None"
+            // get product type, if invalid entry, set type to "None"
             //
             ConsoleUtil.DisplayMessage("");
-            ConsoleUtil.DisplayPromptMessage("Enter the widget type: ");
-            Product.ProductType widgetType;
-            if (Enum.TryParse<Product.ProductType>(Console.ReadLine(), out widgetType))
+            ConsoleUtil.DisplayPromptMessage("Enter the product type: ");
+            Product.ProductType productType;
+            if (Enum.TryParse<Product.ProductType>(Console.ReadLine(), out productType))
             {
-                salesperson.CurrentStock.Type = widgetType;
+                salesperson.CurrentStock.Type = productType;
             }
             else
             {
@@ -169,16 +171,16 @@ namespace Demo_TheTravelingSalesperson
             }
 
             //
-            // get number of widgets in inventory
+            // get number of products in inventory
             //
-            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "widgets", out int numberOfUnits))
+            if (ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnits))
             {
                 salesperson.CurrentStock.AddProducts(numberOfUnits);
             }
             else
             {
-                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of widgets in your stock.");
-                ConsoleUtil.DisplayMessage("By default, the number of widgets in your inventory are now set to zero.");
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products in your stock.");
+                ConsoleUtil.DisplayMessage("By default, the number of products in your inventory are now set to zero.");
                 salesperson.CurrentStock.AddProducts(0);
                 DisplayContinuePrompt();
             }
@@ -212,7 +214,7 @@ namespace Demo_TheTravelingSalesperson
             DisplayAccountDetail(salesperson);
 
             ConsoleUtil.DisplayMessage("");
-            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Save the account information?", out maxAttemptsExceeded);
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAXIMUM_ATTEMPTS, "Save the account information?", out maxAttemptsExceeded);
 
             if (maxAttemptsExceeded)
             {
@@ -259,7 +261,7 @@ namespace Demo_TheTravelingSalesperson
             DisplayAccountDetail(salesperson);
 
             ConsoleUtil.DisplayMessage("");
-            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAXIMUM_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
 
             if (maxAttemptsExceeded)
             {
@@ -290,7 +292,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayReset();
 
             ConsoleUtil.DisplayMessage("");
-            userResponse = ConsoleValidator.GetYesNoFromUser(MAX_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
+            userResponse = ConsoleValidator.GetYesNoFromUser(MAXIMUM_ATTEMPTS, "Load the account information?", out maxAttemptsExceeded);
 
             if (maxAttemptsExceeded)
             {
@@ -449,7 +451,7 @@ namespace Demo_TheTravelingSalesperson
         }
 
         /// <summary>
-        /// get the number of widget units to buy from the user
+        /// get the number of product units to buy from the user
         /// </summary>
         /// <returns>int number of units to buy</returns>
         public int DisplayGetNumberOfUnitsToBuy(Product product)
@@ -458,22 +460,22 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayReset();
 
             //
-            // get number of widgets to buy
+            // get number of products to buy
             //
-            ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " widgets.");
+            ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "widgets", out int numberOfUnitsToBuy))
+            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnitsToBuy))
             {
-                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of widgets to buy.");
-                ConsoleUtil.DisplayMessage("By default, the number of widgets to sell will be set to zero.");
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to buy.");
+                ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
                 numberOfUnitsToBuy = 0;
                 DisplayContinuePrompt();
             }
 
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage(numberOfUnitsToBuy + " " + product.Type.ToString() + " widgets have been added to the inventory.");
+            ConsoleUtil.DisplayMessage(numberOfUnitsToBuy + " " + product.Type.ToString() + " products have been added to the inventory.");
 
             DisplayContinuePrompt();
 
@@ -481,7 +483,7 @@ namespace Demo_TheTravelingSalesperson
         }
 
         /// <summary>
-        /// get the number of widget units to sell from the user
+        /// get the number of product units to sell from the user
         /// </summary>
         /// <returns>int number of units to buy</returns>
         public int DisplayGetNumberOfUnitsToSell(Product product)
@@ -490,22 +492,22 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayReset();
 
             //
-            // get number of widgets to sell
+            // get number of products to sell
             //
-            ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " widgets.");
+            ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "widgets", out int numberOfUnitsToSell))
+            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnitsToSell))
             {
-                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of widgets to sell.");
-                ConsoleUtil.DisplayMessage("By default, the number of widgets to sell will be set to zero.");
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to sell.");
+                ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
                 numberOfUnitsToSell = 0;
                 DisplayContinuePrompt();
             }
 
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage(numberOfUnitsToSell + " " + product.Type.ToString() + " widgets have been subtracted from the inventory.");
+            ConsoleUtil.DisplayMessage(numberOfUnitsToSell + " " + product.Type.ToString() + " products have been subtracted from the inventory.");
 
             DisplayContinuePrompt();
 
@@ -524,9 +526,9 @@ namespace Demo_TheTravelingSalesperson
             int numberOfUnitsBackordered = Math.Abs(product.NumberOfUnits);
             int numberOfUnitsShipped = numberOfUnitsSold - numberOfUnitsBackordered;
 
-            ConsoleUtil.DisplayMessage("Widgets Sold: " + numberOfUnitsSold);
-            ConsoleUtil.DisplayMessage("Widgets Shipped: " + numberOfUnitsShipped);
-            ConsoleUtil.DisplayMessage("Widgets on Backorder: " + numberOfUnitsBackordered);
+            ConsoleUtil.DisplayMessage("Products Sold: " + numberOfUnitsSold);
+            ConsoleUtil.DisplayMessage("Products Shipped: " + numberOfUnitsShipped);
+            ConsoleUtil.DisplayMessage("Products on Backorder: " + numberOfUnitsBackordered);
 
             DisplayContinuePrompt();
         }
@@ -539,7 +541,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.HeaderText = "Current Inventory";
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("Widget type: " + product.Type.ToString());
+            ConsoleUtil.DisplayMessage("Product type: " + product.Type.ToString());
             ConsoleUtil.DisplayMessage("Number of units: " + product.NumberOfUnits.ToString());
             ConsoleUtil.DisplayMessage("");
 
@@ -587,14 +589,14 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("First Name: " + salesperson.FirstName);
             ConsoleUtil.DisplayMessage("Last Name: " + salesperson.LastName);
             ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
-            ConsoleUtil.DisplayMessage("Widget Type: " + salesperson.CurrentStock.Type);
+            ConsoleUtil.DisplayMessage("Product Type: " + salesperson.CurrentStock.Type);
             if (!salesperson.CurrentStock.OnBackorder)
             {
-                ConsoleUtil.DisplayMessage("Units of Widgets in Inventory: " + salesperson.CurrentStock.NumberOfUnits);
+                ConsoleUtil.DisplayMessage("Units of Products in Inventory: " + salesperson.CurrentStock.NumberOfUnits);
             }
             else
             {
-                ConsoleUtil.DisplayMessage("Units of Widgets on Backorder: " + Math.Abs(salesperson.CurrentStock.NumberOfUnits));
+                ConsoleUtil.DisplayMessage("Units of Products on Backorder: " + Math.Abs(salesperson.CurrentStock.NumberOfUnits));
             }
         }
 

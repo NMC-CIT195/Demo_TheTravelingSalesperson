@@ -13,6 +13,10 @@ namespace Demo_TheTravelingSalesperson
     {
         #region FIELDS
 
+        private const int MAXIMUM_ATTEMPTS = 3;
+        private const int MINIMUM_BUYSELL_AMOUNT = 0;
+        private const int MAXIMUM_BUYSELL_AMOUNT = 100;
+
         #endregion
 
         #region PROPERTIES
@@ -318,7 +322,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnitsToBuy))
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToBuy))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to buy.");
                 ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
@@ -350,7 +354,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " products.");
             ConsoleUtil.DisplayMessage("");
 
-            if (!ConsoleValidator.TryGetIntegerFromUser(0, 100, 3, "products", out int numberOfUnitsToSell))
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToSell))
             {
                 ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to sell.");
                 ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
