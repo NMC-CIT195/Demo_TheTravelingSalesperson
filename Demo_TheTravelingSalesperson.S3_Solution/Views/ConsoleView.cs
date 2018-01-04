@@ -161,7 +161,7 @@ namespace Demo_TheTravelingSalesperson
             ConsoleUtil.DisplayMessage("");
             ConsoleUtil.DisplayPromptMessage("Enter the product type: ");
             Product.ProductType productType;
-            if (Enum.TryParse<Product.ProductType>(Console.ReadLine(), out productType))
+            if (Enum.TryParse<Product.ProductType>(UppercaseFirst(Console.ReadLine()), out productType))
             {
                 salesperson.CurrentStock.Type = productType;
             }
@@ -600,6 +600,22 @@ namespace Demo_TheTravelingSalesperson
             }
         }
 
+        /// <summary>
+        /// changes string to lowercase with first letter uppercase
+        /// adapted from: https://www.dotnetperls.com/uppercase-first-letter
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        static string UppercaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concatenation substring.
+            return char.ToUpper(s[0]) + s.Substring(1).ToLower();
+        }
         #endregion
     }
 }

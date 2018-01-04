@@ -13,13 +13,13 @@ namespace Demo_TheTravelingSalesperson
             //
             // seed data file
             //
-            //InitializeDataFileCsv dataInitializerCsv = new InitializeDataFileCsv();
-            //dataInitializerCsv.SeedDataFile();
-            //InitializeDataFileXml dataInitializerXml = new InitializeDataFileXml();
-            //dataInitializerXml.SeedDataFile();
+            InitializeDataFileCsv dataInitializerCsv = new InitializeDataFileCsv();
+            dataInitializerCsv.SeedDataFile();
+            InitializeDataFileXml dataInitializerXml = new InitializeDataFileXml();
+            dataInitializerXml.SeedDataFile();
 
             //
-            // debug IO
+            // debug write and read seed data
             //
             //XmlServices IoServicesXml = new XmlServices(DataSettings.dataFilePathXml);
             //Salesperson salespersonXml = IoServicesXml.ReadSalespersonFromDataFile();

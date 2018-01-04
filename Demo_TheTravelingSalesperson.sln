@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S3_Solution", "Demo_TheTravelingSalesperson.S3_Solution\Demo_TheTravelingSalesperson.S3_Solution.csproj", "{77745768-B8C0-469B-9801-D178197566DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S3_Starter", "Demo_TheTravelingSalesperson.S3_Starter\Demo_TheTravelingSalesperson.S3_Starter.csproj", "{68FF8895-CAD0-4B94-B114-13276F0BCB05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{77745768-B8C0-469B-9801-D178197566DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77745768-B8C0-469B-9801-D178197566DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77745768-B8C0-469B-9801-D178197566DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
