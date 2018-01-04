@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="TheTravelingSalesperson_ClassDiagram.S3.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Data.txt">
