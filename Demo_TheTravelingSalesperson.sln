@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S3_Starter", "Demo_TheTravelingSalesperson.S3_Starter\Demo_TheTravelingSalesperson.S3_Starter.csproj", "{68FF8895-CAD0-4B94-B114-13276F0BCB05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Starter2", "Demo_TheTravelingSalesperson.S1_Starter2\Demo_TheTravelingSalesperson.S1_Starter2.csproj", "{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68FF8895-CAD0-4B94-B114-13276F0BCB05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

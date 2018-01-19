@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9D30E880-8C55-4511-AB46-F64FDD5545AF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Demo_TheTravelingSalesperson.S1_Starter</RootNamespace>
-    <AssemblyName>Demo_TheTravelingSalesperson.S1_Starter</AssemblyName>
+    <RootNamespace>Demo_TheTravelingSalesperson</RootNamespace>
+    <AssemblyName>Demo_TheTravelingSalesperson</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
