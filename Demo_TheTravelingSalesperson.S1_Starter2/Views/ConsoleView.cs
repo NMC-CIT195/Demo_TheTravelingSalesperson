@@ -136,9 +136,69 @@ namespace Demo_TheTravelingSalesperson
         public MenuOption DisplayGetUserMenuChoice()
         {
             MenuOption userMenuChoice = MenuOption.None;
+            bool usingMenu = true;
+
+            while (usingMenu)
+            {
+                //
+                // set up display area
+                //
+                ConsoleUtil.DisplayReset();
+                Console.CursorVisible = false;
+
+                //
+                // display the menu
+                //
+                ConsoleUtil.DisplayMessage("Please type the number of your menu choice.");
+                ConsoleUtil.DisplayMessage("");
+                Console.Write(
+                    "\t" + "1. Travel" + Environment.NewLine +
+                    "\t" + "2. Display Cities" + Environment.NewLine +
+                    "\t" + "3. Display Account Info" + Environment.NewLine +
+                    "\t" + "E. Exit" + Environment.NewLine);
+
+                //
+                // get and process the user's response
+                // note: ReadKey argument set to "true" disables the echoing of the key press
+                //
+                ConsoleKeyInfo userResponse = Console.ReadKey(true);
+                switch (userResponse.KeyChar)
+                {
+                    case '1':
+                        userMenuChoice = MenuOption.Travel;
+                        usingMenu = false;
+                        break;
+                    case '2':
+                        userMenuChoice = MenuOption.DisplayCities;
+                        usingMenu = false;
+                        break;
+                    case '3':
+                        userMenuChoice = MenuOption.DisplayAccountInfo;
+                        usingMenu = false;
+                        break;
+                    case 'E':
+                    case 'e':
+                        userMenuChoice = MenuOption.Exit;
+                        usingMenu = false;
+                        break;
+                    default:
+                        ConsoleUtil.DisplayMessage(
+                            "It appears you have selected an incorrect choice." + Environment.NewLine +
+                            "Press any key to continue or the ESC key to quit the application.");
+
+                        userResponse = Console.ReadKey(true);
+                        if (userResponse.Key == ConsoleKey.Escape)
+                        {
+                            usingMenu = false;
+                        }
+                        break;
+                }
+            }
+            Console.CursorVisible = true;
 
             return userMenuChoice;
         }
+
         /// <summary>
         /// get the next city to travel to from the user
         /// </summary>
